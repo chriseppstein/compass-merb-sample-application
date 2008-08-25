@@ -54,6 +54,9 @@ Gem.path.unshift(Merb.root / "gems")
 # dependency "RedCloth", "> 3.0"
 # OR
 # dependencies "RedCloth" => "> 3.0", "ruby-aes-cext" => "= 1.0"
+
+dependencies "merb-haml", "compass"
+
 Merb::BootLoader.after_app_loads do
   # Add dependencies here that must load after the application loads:
 
@@ -130,8 +133,14 @@ Merb::Config.use do |c|
   # 'memory' or 'memcached'.  You can of course use your favorite ORM 
   # instead: 'datamapper', 'sequel' or 'activerecord'.
   c[:session_store] = 'cookie'
-end
 
+  # Added to support the compass SASS CSS framework
+  c[:compass] = {
+    :stylesheets => 'app/stylesheets',
+    :compiled_stylesheets => 'public/stylesheets/compiled'
+  }
+
+end
 
 # ==== Tune your inflector
 
