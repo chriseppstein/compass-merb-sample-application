@@ -50,3 +50,6 @@ If you do copy the master.sass file into your app, we suggest removing the follo
 
   public/stylesheets/master.css
 
+== Credits
+
+Special thanks to Glenn Rempe (http://www.github.com/grempe/) for creating this Sample Application.
