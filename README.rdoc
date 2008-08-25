@@ -1,0 +1,52 @@
+= Compass Merb Sample App
+
+This sample Merb app demonstrates the simple changes necessary in order to use the Compass SASS framework with a Merb app.
+
+Using Compass gives you an easy way to include BluePrint and other CSS frameworks into your Merb or Rails app.
+
+This sample app was generated with:
+
+  merb-gen app compass_merb_sample_app
+
+You can run it (assuming you have Merb installed) with:
+
+  cd compass_merb_sample_app
+  merb
+
+== What Changed?
+
+The following changes were made to get the sample working with Compass.
+
+Follow the instructions to install Compass & Haml
+
+Edit config/init.rb and add the following to the config block.  This step is optional.  The intention is to keep SASS files, which are really program files, separate from your custom CSS.  Additionally this will put your generated CSS files in the compiled dir, which will ensure they don't overwrite anything you have existing or create in the future.
+
+  Merb::Config.use do |c|
+    ...
+    # Added to support the compass SASS CSS framework
+    c[:compass] = {
+      :stylesheets => 'app/stylesheets',
+      :compiled_stylesheets => 'public/stylesheets/compiled'
+    }
+    ...
+  end
+
+Add the necessary dependencies to config/init.rb
+
+  ...
+  dependencies "merb-haml", "compass"
+
+  Merb::BootLoader.after_app_loads do
+  end
+  ...
+
+Create a new SASS stylesheets dir (if you chose to follow the relevant config step above):
+
+  MERB_ROOT/app/stylesheets
+
+Add a SASS file to this dir.  You may want to copy the master.sass out of this sample app.  This file recreates the master.css file which ships in a default Merb app but uses SASS and BluePrint instead of raw CSS.  You can change or extend this as you please.  You'll know if you have everything working if you see the BluePrint logo on the Merb default page.
+
+If you do copy the master.sass file into your app, we suggest removing the following file (assuming you have a backup) as it will no longer be needed:
+
+  public/stylesheets/master.css
+
